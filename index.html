@@ -8,74 +8,80 @@
   <meta property="og:description" content="818+ members. Internships, jobs, courses, and scholarships for Pakistan and remote markets.">
   <meta property="og:image" content="icon.png">
   <title>RISE | Career & Learning Network</title>
-  <link rel="icon" href="icon.jpg">
+  <link rel="icon" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ---- LIGHT MODE (default) ---- */
     :root {
-      --green:         #16a34a;
-      --green-hover:   #15803d;
-      --green-light:   #f0fdf4;
-      --green-border:  #bbf7d0;
-      --green-text:    #166534;
-      --ink-900:       #0f172a;
-      --ink-700:       #334155;
-      --ink-500:       #64748b;
-      --ink-300:       #cbd5e1;
-      --ink-100:       #f1f5f9;
-      --ink-50:        #f8fafc;
-      --white:         #ffffff;
-      --font:          'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      --max:           960px;
-      --radius:        10px;
+      --bg-page:    #f8fafc;
+      --bg-card:    #ffffff;
+      --bg-alt:     #f1f5f9;
+      --text-h:     #0f172a;
+      --text-b:     #334155;
+      --text-m:     #64748b;
+      --border:     #e2e8f0;
+      --green:      #16a34a;
+      --green-hov:  #15803d;
+      --green-tint: #f0fdf4;
+      --green-brd:  #bbf7d0;
+      --green-tx:   #166534;
+      --nav-bg:     rgba(255,255,255,0.92);
+      /* footer never flips */
+      --footer-bg:  #0f172a;
+      --footer-tx:  #f1f5f9;
+      --footer-m:   #64748b;
+      --font:       'Plus Jakarta Sans', system-ui, sans-serif;
+      --max:        960px;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --green:        #22c55e;
-        --green-hover:  #16a34a;
-        --green-light:  #052e16;
-        --green-border: #14532d;
-        --green-text:   #4ade80;
-        --ink-900:      #f8fafc;
-        --ink-700:      #e2e8f0;
-        --ink-500:      #94a3b8;
-        --ink-300:      #334155;
-        --ink-100:      #1e293b;
-        --ink-50:       #0f172a;
-        --white:        #1e293b;
-      }
+    /* ---- DARK MODE ---- */
+    html.dark {
+      --bg-page:    #0f172a;
+      --bg-card:    #1e293b;
+      --bg-alt:     #162032;
+      --text-h:     #f1f5f9;
+      --text-b:     #cbd5e1;
+      --text-m:     #64748b;
+      --border:     #2d3d50;
+      --green:      #22c55e;
+      --green-hov:  #16a34a;
+      --green-tint: #052e16;
+      --green-brd:  #14532d;
+      --green-tx:   #4ade80;
+      --nav-bg:     rgba(15,23,42,0.92);
+      --footer-bg:  #020617;
+      --footer-tx:  #f1f5f9;
+      --footer-m:   #475569;
     }
 
-    html { scroll-behavior: smooth; }
+    html, body { min-height: 100%; }
 
     body {
       font-family: var(--font);
-      color: var(--ink-700);
-      background: var(--ink-50);
+      background: var(--bg-page);
+      color: var(--text-b);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      transition: background 0.2s, color 0.2s;
     }
 
     a { color: inherit; text-decoration: none; }
 
-    /* NAV */
+    /* ---- NAV ---- */
     nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.92);
+      background: var(--nav-bg);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--ink-300);
+      border-bottom: 1px solid var(--border);
       padding: 0 24px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      nav { background: rgba(30,41,59,0.92); }
+      transition: background 0.2s, border-color 0.2s;
     }
 
     .nav-inner {
@@ -85,7 +91,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
     }
 
     .nav-brand {
@@ -102,20 +108,50 @@
       object-fit: cover;
     }
 
-    .nav-logo-text {
+    .nav-name {
       font-size: 15px;
       font-weight: 700;
-      color: var(--ink-900);
+      color: var(--text-h);
       letter-spacing: -0.02em;
     }
 
-    .nav-logo-text span { color: var(--green); }
+    .nav-name span { color: var(--green); }
 
-    /* BUTTON */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* theme toggle */
+    .theme-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, border-color 0.15s;
+      color: var(--text-m);
+    }
+
+    .theme-btn:hover { background: var(--bg-alt); }
+
+    .theme-btn svg { width: 16px; height: 16px; }
+
+    .icon-sun  { display: none; }
+    .icon-moon { display: block; }
+    html.dark .icon-sun  { display: block; }
+    html.dark .icon-moon { display: none; }
+
+    /* ---- BUTTON ---- */
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
       background: var(--green);
       color: #fff;
       font-family: var(--font);
@@ -126,11 +162,11 @@
       border: none;
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.15s, transform 0.1s;
       white-space: nowrap;
+      transition: background 0.15s, transform 0.1s;
     }
 
-    .btn:hover { background: var(--green-hover); transform: translateY(-1px); }
+    .btn:hover { background: var(--green-hov); transform: translateY(-1px); }
     .btn:active { transform: translateY(0); }
 
     .btn-lg {
@@ -139,12 +175,20 @@
       border-radius: 10px;
     }
 
-    /* HERO */
+    .btn-white {
+      background: #ffffff;
+      color: #15803d;
+    }
+
+    .btn-white:hover { background: #f1f5f9; }
+
+    /* ---- HERO ---- */
     .hero {
-      background: var(--white);
-      border-bottom: 1px solid var(--ink-300);
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
       padding: 88px 24px 80px;
       text-align: center;
+      transition: background 0.2s;
     }
 
     .hero-inner {
@@ -155,14 +199,13 @@
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: var(--green-light);
-      color: var(--green-text);
+      background: var(--green-tint);
+      color: var(--green-tx);
       font-size: 11px;
       font-weight: 700;
       padding: 5px 14px;
       border-radius: 99px;
-      border: 1px solid var(--green-border);
+      border: 1px solid var(--green-brd);
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 32px;
@@ -175,61 +218,50 @@
       object-fit: cover;
       margin: 0 auto 24px;
       display: block;
-      border: 1px solid var(--ink-300);
-    }
-
-    .hero-icon-fallback {
-      width: 76px;
-      height: 76px;
-      border-radius: 50%;
-      margin: 0 auto 24px;
-      background: var(--green-light);
-      border: 1px solid var(--green-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 1px solid var(--border);
     }
 
     .hero h1 {
-      font-size: clamp(56px, 10vw, 88px);
+      font-size: clamp(60px, 11vw, 96px);
       font-weight: 800;
       color: var(--green);
       letter-spacing: -0.04em;
       line-height: 1;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .hero-subtitle {
       font-size: clamp(16px, 2.5vw, 20px);
       font-weight: 500;
-      color: var(--ink-500);
+      color: var(--text-m);
       letter-spacing: -0.01em;
       margin-bottom: 20px;
     }
 
     .hero-tagline {
-      font-size: clamp(16px, 2vw, 18px);
-      color: var(--ink-700);
-      line-height: 1.6;
-      max-width: 480px;
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--text-b);
+      line-height: 1.65;
+      max-width: 460px;
       margin: 0 auto 40px;
     }
 
     .hero-cta { margin-bottom: 56px; }
 
+    /* stats row */
     .stats-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      border: 1px solid var(--ink-300);
-      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      border-radius: 10px;
       overflow: hidden;
-      background: var(--white);
+      background: var(--bg-card);
     }
 
     .stat {
       padding: 18px 12px;
       text-align: center;
-      border-right: 1px solid var(--ink-300);
+      border-right: 1px solid var(--border);
     }
 
     .stat:last-child { border-right: none; }
@@ -237,7 +269,7 @@
     .stat-val {
       font-size: 22px;
       font-weight: 800;
-      color: var(--ink-900);
+      color: var(--text-h);
       letter-spacing: -0.03em;
       line-height: 1;
       margin-bottom: 4px;
@@ -245,19 +277,20 @@
 
     .stat-lbl {
       font-size: 11px;
-      color: var(--ink-500);
+      color: var(--text-m);
       font-weight: 500;
       letter-spacing: 0.02em;
     }
 
-    /* ABOUT */
+    /* ---- ABOUT ---- */
     .about {
-      background: var(--ink-50);
+      background: var(--bg-alt);
       padding: 80px 24px;
-      border-bottom: 1px solid var(--ink-300);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
     }
 
-    .section-wrap {
+    .wrap {
       max-width: var(--max);
       margin: 0 auto;
     }
@@ -271,14 +304,14 @@
       margin-bottom: 10px;
     }
 
-    .section-title {
+    .sec-title {
       font-size: clamp(24px, 3.5vw, 34px);
       font-weight: 800;
-      color: var(--ink-900);
+      color: var(--text-h);
       letter-spacing: -0.025em;
       line-height: 1.15;
       margin-bottom: 40px;
-      max-width: 440px;
+      max-width: 420px;
     }
 
     .about-grid {
@@ -287,14 +320,15 @@
       gap: 16px;
     }
 
-    .about-card {
-      background: var(--white);
-      border: 1px solid var(--ink-300);
-      border-radius: var(--radius);
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
       padding: 24px 20px;
+      transition: background 0.2s, border-color 0.2s;
     }
 
-    .about-card-dot {
+    .card-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
@@ -302,25 +336,26 @@
       margin-bottom: 16px;
     }
 
-    .about-card h3 {
+    .card h3 {
       font-size: 15px;
       font-weight: 700;
-      color: var(--ink-900);
+      color: var(--text-h);
       letter-spacing: -0.01em;
       margin-bottom: 6px;
     }
 
-    .about-card p {
+    .card p {
       font-size: 13.5px;
-      color: var(--ink-500);
+      color: var(--text-m);
       line-height: 1.5;
     }
 
-    /* RULES */
+    /* ---- RULES ---- */
     .rules {
-      background: var(--white);
+      background: var(--bg-card);
       padding: 80px 24px;
-      border-bottom: 1px solid var(--ink-300);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
     }
 
     .rules-grid {
@@ -334,9 +369,10 @@
       gap: 14px;
       align-items: flex-start;
       padding: 16px;
-      border: 1px solid var(--ink-300);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      background: var(--ink-50);
+      background: var(--bg-alt);
+      transition: background 0.2s, border-color 0.2s;
     }
 
     .rule-num {
@@ -350,13 +386,13 @@
 
     .rule-text {
       font-size: 13.5px;
-      color: var(--ink-700);
+      color: var(--text-b);
       line-height: 1.5;
     }
 
-    /* FOOTER CTA */
+    /* ---- FOOTER CTA (always dark, never flips) ---- */
     .footer-cta {
-      background: var(--ink-900);
+      background: var(--footer-bg);
       padding: 80px 24px;
       text-align: center;
     }
@@ -364,7 +400,7 @@
     .footer-cta h2 {
       font-size: clamp(26px, 4vw, 40px);
       font-weight: 800;
-      color: #fff;
+      color: var(--footer-tx);
       letter-spacing: -0.025em;
       line-height: 1.15;
       margin-bottom: 10px;
@@ -372,23 +408,13 @@
 
     .footer-cta p {
       font-size: 16px;
-      color: #94a3b8;
+      color: var(--footer-m);
       margin-bottom: 36px;
     }
 
-    .btn-white {
-      background: #fff;
-      color: var(--green-hover);
-    }
-
-    .btn-white:hover {
-      background: #f1f5f9;
-      transform: translateY(-1px);
-    }
-
-    /* FOOTER */
+    /* ---- FOOTER BAR ---- */
     footer {
-      background: var(--ink-900);
+      background: var(--footer-bg);
       border-top: 1px solid #1e293b;
       padding: 20px 24px;
       text-align: center;
@@ -399,30 +425,17 @@
       color: #475569;
     }
 
-    footer a {
-      color: #475569;
-      transition: color 0.15s;
-    }
-
+    footer a { color: #475569; transition: color 0.15s; }
     footer a:hover { color: #94a3b8; }
 
-    /* MOBILE */
+    /* ---- MOBILE ---- */
     @media (max-width: 600px) {
-      .stats-row {
-        grid-template-columns: 1fr 1fr;
-      }
-
+      .stats-row { grid-template-columns: 1fr 1fr; }
       .stat:nth-child(2) { border-right: none; }
       .stat:nth-child(1),
-      .stat:nth-child(2) { border-bottom: 1px solid var(--ink-300); }
-
-      .rules-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-logo-text {
-        display: none;
-      }
+      .stat:nth-child(2) { border-bottom: 1px solid var(--border); }
+      .rules-grid { grid-template-columns: 1fr; }
+      .nav-name { display: none; }
     }
   </style>
 </head>
@@ -433,9 +446,21 @@
     <div class="nav-inner">
       <a href="#" class="nav-brand">
         <img src="icon.png" alt="RISE" class="nav-icon" onerror="this.style.display='none'">
-        <span class="nav-logo-text">RISE <span>| Career & Learning Network</span></span>
+        <span class="nav-name">RISE <span>| Career & Learning Network</span></span>
       </a>
-      <a href="https://chat.whatsapp.com/HUbp3UP3Rva8Q9GtEbXLwE" target="_blank" rel="noopener" class="btn">Join community</a>
+      <div class="nav-right">
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+          <!-- Sun (shown in dark mode) -->
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+          <!-- Moon (shown in light mode) -->
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
+          </svg>
+        </button>
+        <a href="https://chat.whatsapp.com/HUbp3UP3Rva8Q9GtEbXLwE" target="_blank" rel="noopener" class="btn">Join community</a>
+      </div>
     </div>
   </nav>
 
@@ -444,12 +469,7 @@
     <div class="hero-inner">
       <div class="badge">Pakistan &amp; Remote</div>
 
-      <img
-        src="icon.png"
-        alt="RISE"
-        class="hero-icon"
-        onerror="this.outerHTML='<div class=\'hero-icon-fallback\'><svg width=\'36\' height=\'36\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#16a34a\' stroke-width=\'2.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M12 19V5\'/><path d=\'M5 12l7-7 7 7\'/></svg></div>'"
-      >
+      <img src="icon.png" alt="RISE" class="hero-icon" onerror="this.style.display='none'">
 
       <h1>RISE</h1>
       <p class="hero-subtitle">Career &amp; Learning Network</p>
@@ -482,28 +502,27 @@
 
   <!-- ABOUT -->
   <section class="about">
-    <div class="section-wrap">
+    <div class="wrap">
       <p class="eyebrow">What we share</p>
-      <h2 class="section-title">Every opportunity, in one place.</h2>
-
+      <h2 class="sec-title">Every opportunity, in one place.</h2>
       <div class="about-grid">
-        <div class="about-card">
-          <div class="about-card-dot"></div>
+        <div class="card">
+          <div class="card-dot"></div>
           <h3>Internships</h3>
           <p>Verified openings from companies across Pakistan and remote employers worldwide.</p>
         </div>
-        <div class="about-card">
-          <div class="about-card-dot"></div>
+        <div class="card">
+          <div class="card-dot"></div>
           <h3>Job openings</h3>
           <p>Full-time and part-time roles across industries, curated from trusted sources.</p>
         </div>
-        <div class="about-card">
-          <div class="about-card-dot"></div>
+        <div class="card">
+          <div class="card-dot"></div>
           <h3>Courses</h3>
           <p>Free and paid resources to build skills relevant to today's job market.</p>
         </div>
-        <div class="about-card">
-          <div class="about-card-dot"></div>
+        <div class="card">
+          <div class="card-dot"></div>
           <h3>Scholarships</h3>
           <p>Local and international scholarship opportunities for students at all levels.</p>
         </div>
@@ -513,10 +532,9 @@
 
   <!-- RULES -->
   <section class="rules">
-    <div class="section-wrap">
+    <div class="wrap">
       <p class="eyebrow">Community standards</p>
-      <h2 class="section-title">A focused group needs clear rules.</h2>
-
+      <h2 class="sec-title">A focused group needs clear rules.</h2>
       <div class="rules-grid">
         <div class="rule">
           <span class="rule-num">01</span>
@@ -556,7 +574,7 @@
 
   <!-- FOOTER CTA -->
   <section class="footer-cta">
-    <div class="section-wrap">
+    <div class="wrap">
       <h2>Ready to join?</h2>
       <p>818+ members are already inside. It takes 10 seconds.</p>
       <a href="https://chat.whatsapp.com/HUbp3UP3Rva8Q9GtEbXLwE" target="_blank" rel="noopener" class="btn btn-lg btn-white">Join RISE on WhatsApp</a>
@@ -564,10 +582,41 @@
   </section>
 
   <footer>
-    <div class="section-wrap">
+    <div class="wrap">
       <p>RISE | Career &amp; Learning Network &nbsp;·&nbsp; Pakistan &amp; Remote &nbsp;·&nbsp; <a href="https://chat.whatsapp.com/HUbp3UP3Rva8Q9GtEbXLwE" target="_blank" rel="noopener">Join the group</a></p>
     </div>
   </footer>
+
+  <script>
+    const html = document.documentElement;
+    const btn  = document.getElementById('themeToggle');
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        html.classList.add('dark');
+      } else {
+        html.classList.remove('dark');
+      }
+    }
+
+    // Init: check saved preference, then system preference
+    const saved  = localStorage.getItem('rise-theme');
+    const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (saved) {
+      applyTheme(saved);
+    } else if (sysDark) {
+      applyTheme('dark');
+    }
+
+    // Toggle
+    btn.addEventListener('click', function() {
+      const isDark = html.classList.contains('dark');
+      const next = isDark ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem('rise-theme', next);
+    });
+  </script>
 
 </body>
 </html>
